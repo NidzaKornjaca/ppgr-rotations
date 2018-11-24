@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "32b3cb52ed5e16ae158f05851da1ad3027e74fb0dad3241d643280056316d040"
+            "sha256": "e5f5a5abd76646d552b12931b1195124c3695f9a86f0523a55cf191ab7f0de89"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -50,6 +50,13 @@
                 "sha256:d2d587dde06f99545fb13a383d2cd336a8ff1f359c5839ce3a64c917d10c029f"
             ],
             "version": "==0.2.3"
+        },
+        "ipdb": {
+            "hashes": [
+                "sha256:7081c65ed7bfe7737f83fa4213ca8afd9617b42ff6b3f1daf9a3419839a2a00a"
+            ],
+            "index": "pypi",
+            "version": "==0.11"
         },
         "ipykernel": {
             "hashes": [
@@ -272,6 +279,7 @@
                 "sha256:923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0",
                 "sha256:d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f"
             ],
+            "markers": "os_name != 'nt'",
             "version": "==0.6.0"
         },
         "pygments": {
