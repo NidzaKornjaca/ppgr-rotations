@@ -1,4 +1,5 @@
 import math
+from numbers import Number
 import numpy as np
 
 class Quaternion(object):
@@ -44,10 +45,13 @@ class Quaternion(object):
         return Quaternion(*self._quaternion)
 
     def __add__(self, other):
-        if not isinstance(other, Quaternion):
-            raise TypeError(f"{other} isn't an instance of Quaternion")
-        return Quaternion(
+        if isinstance(other, Quaternion):
+            return Quaternion(
                 *(self._quaternion + other._quaternion)
+            )
+
+        raise TypeError(
+                f"{type(other)} isn't an instance of Quaternion"
             )
 
     def __mul__(self, other):
@@ -62,9 +66,21 @@ class Quaternion(object):
                 imaginary,
                 real
             )
+        if isinstance(other, Number):
+            return Quaternion(*(other * self._quaternion))
         raise TypeError(
             f"Multiplication {type(other)} with Quaternion isn't supported"
         )
+
+    def __rmul__(self, other):
+        if isinstance(other, Number):
+            return Quaternion(*(other * self._quaternion))
+        raise TypeError(
+            f"RMUL of Quaternion and {type(other)} unsupported"
+        )
+
+    def __neg__(self):
+        return Quaternion(*(-self._quaternion))
 
     def conjugate(self):
         return Quaternion.from_imaginary_and_real(
@@ -94,4 +110,18 @@ class Quaternion(object):
         else:
             p = self.imaginary / np.linalg.norm(self.imaginary)
         return (p, angle)
+
+    @staticmethod
+    def slerp(q1, q2, t, t_max):
+        cos_0 = np.inner(q1._quaternion, q2._quaternion)
+        if cos_0 < 0:
+            q1 = -q1
+            cos_0 = -cos_0
+        if cos_0 > 0.95:
+            return q1
+        tfactor = t / t_max
+        phi_0 = math.acos(cos_0)
+        q1_factor = math.sin(phi_0 * (1 - tfactor)) / math.sin(phi_0)
+        q2_factor = math.sin(phi_0 * tfactor) / math.sin(phi_0)
+        return q1_factor * q1 + q2_factor * q2
 
