@@ -5,7 +5,7 @@ import numpy as np
 class Quaternion(object):
 
     def __init__(self, x, y, z, w):
-        self._quaternion = np.array([x, y, z, w])
+        self._quaternion = np.real(np.array([x, y, z, w]))
 
     @staticmethod
     def from_imaginary_and_real(imaginary, real):
