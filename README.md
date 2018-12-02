@@ -15,15 +15,13 @@ representations.
 
 Contains the Quaternion class and related transformations.
 
-## Examples
+## Animation
 
-Provided are examples of changing a rotation from one
-representation to another in Examples.html, and outputing
-a Rotation + Translation animation in Animation.html.
+Install dependencies:
 
-The examples can also be run interactively by running:
+`pipenv install`
 
-```
-pipenv install
-pipenv run jupyter notebook
-```
+Run animation example:
+
+`pipenv run python Animation.py`
+
